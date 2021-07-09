@@ -18,11 +18,27 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, initializeDb } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+
+const initServer = () => {
+	server.listen(3001, () => {
+	    console.log('%s listening at 3001'); // eslint-disable-line no-console
+	});
+}
+
+const force = false;
+conn.sync({ force }).then(() => {
+    if (force){
+    	initializeDb().then(() => {
+    		console.log('DB initialized!');
+    		initServer();
+    	}).catch((err) => {
+    		console.log("Could not init DB")
+    		console.error(err);
+    	})
+	} else {
+		initServer();
+	}
 });
