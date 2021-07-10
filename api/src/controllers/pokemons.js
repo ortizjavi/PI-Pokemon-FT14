@@ -104,8 +104,9 @@ function getPokemonsById(req, res, next){
 
 
 function getPokemonsByName(req, res, next){
-	const { name } = req.query;
-
+	let { name } = req.query;
+	name = name.toLowerCase();
+	
 	const pokemonDB = Pokemon.findOne({
 		 where: {
 		 	name : {
