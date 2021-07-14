@@ -1,0 +1,16 @@
+.container {
+	width: 60vw;
+	margin: auto;
+}
+
+.container ul{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.item {
+	list-style: none;
+	padding: 0 0.5rem;
+	cursor: pointer;
+}

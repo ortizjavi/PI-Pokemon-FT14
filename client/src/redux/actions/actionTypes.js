@@ -1,0 +1,8 @@
+export const LOAD_MORE_POKEMONS = 'LOAD_MORE_POKEMONS';
+export const LOAD_POKEMONS = 'LOAD_POKEMONS';
+export const LOAD_TYPES = 'LOAD_TYPES';
+export const FILTER_BY_TYPE_FROM = 'FILTER_BY_TYPE_FROM';
+export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+export const FILTER_BY_FROM = 'FILTER_BY_FROM';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
+
