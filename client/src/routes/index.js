@@ -7,7 +7,7 @@ const routes = {
 	},
 	POKEMONID: {
 		path: '/pokemon/:id',
-		component: asyncComponent(() => import('../components/Home/Home'))
+		component: asyncComponent(() => import('../components/Pokemons/Pokemon'))
 	}
 }
 

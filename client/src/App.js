@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { getPokemonsPage, getTypes } from './redux/actions'; //fillPokemonList
 import Header from './components/Header/Header';
 import routes from './routes/';
@@ -18,9 +18,10 @@ function renderRoute({path, component}){
 }
 
 
-function App(props) {
+function App() {
 	const dispatch = useDispatch();
 	const loadMorePokemons = useSelector(state => state.loadMorePokemons);
+	const location = useLocation();
 
 	useEffect(() => {
 		if (loadMorePokemons){
@@ -32,10 +33,9 @@ function App(props) {
 		dispatch(getTypes());
 	}, [dispatch])
 
-	console.log(props.location.pathname);
   return (
     <div className="App">
-      {props.location.pathname !== '/landing' ? <Header /> : null}
+      {location.pathname !== '/landing' ? <Header /> : null}
       <Switch>
 	      {Object.values(routes).map(route => renderRoute(route))}
       </Switch>
@@ -43,4 +43,4 @@ function App(props) {
   );
 }
 
-export default withRouter(App);
+export default App;

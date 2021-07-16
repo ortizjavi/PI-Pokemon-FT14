@@ -3,14 +3,12 @@ import Pagination from '../Pagination/Pagination';
 import Filter from '../Filter/Filter';
 
 const Home = () => {
-	const pokemons = useSelector(state => state.pokemons);
 	const filter = useSelector(state => state.filter);
-	const filtered = useSelector(state => state.filteredPokemons);
 
 	return (
 		<div>
 			<Filter />
-			<Pagination pokemonList={filter ? filtered : pokemons}/>
+			<Pagination filtered={filter}/>
 		</div>
 	);
 }
