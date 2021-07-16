@@ -4,5 +4,7 @@ export const LOAD_TYPES = 'LOAD_TYPES';
 export const FILTER_BY_TYPE_FROM = 'FILTER_BY_TYPE_FROM';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FILTER_BY_FROM = 'FILTER_BY_FROM';
+export const FILTER_BY = 'FILTER_BY';
+export const ORDER_BY = 'ORDER_BY';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
-
+export const ADD_SEARCHED_NAME = 'ADD_SEARCHED_NAME';
