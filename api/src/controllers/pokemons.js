@@ -61,6 +61,7 @@ function getPokemons(req, res, next){
 	let pokemons = [];
 
 	Pokemon.findAll({
+		attributes : ['id','name','attack'], //,'img'
 		include
 	}).then(pokemonsDB => {
 		const { length } = pokemonsDB;

@@ -9,9 +9,9 @@ module.exports = (duration) => {
       res.setHeader('x-cache', 'HIT');
       return res.status(cachedBody.status).send(cachedBody.body);
     } else {
-      console.log(`Caching ${key.slice('__express__'.length)}...`);
       res.sendResponse = res.send;
       res.send = (body) => {
+        console.log(`Caching ${key.slice('__express__'.length)}...`);
         mcache.put(key, {body, status: res.statusCode}, duration * 1000);
         res.setHeader('x-cache', 'MISS');
         res.sendResponse(body);

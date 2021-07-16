@@ -8,23 +8,34 @@ var Promise = require('bluebird');
 
 function getPokemonAttributes(obj){
 	const {
-		id,
-		name,
 		hp,
-		img,
-		attack,
 		defense,
 		speed,
 		weight,
-		height,
-		types
+		height
 	} = obj;
 	return {
-		id, name, hp, img,
-		attack, defense, speed,
-		weight, height, types
+		hp, defense, 
+		speed, weight, height,
+		...getPokemonLigthAttributes(obj)
 	}
 }
+
+function getPokemonLigthAttributes(obj){
+	const {
+		id,
+		name,
+		img,
+		types,
+		attack
+	} = obj;
+	return {
+		id, name, 
+		img, types,
+		attack
+	}
+}
+
 
 function flatStats(statsObj){
 	return statsObj.reduce((stats, stat) => {
@@ -40,23 +51,27 @@ function flatTypes(typesObj){
 	})
 }
 
-function formatResponseToPokemon(response){
+
+function formatResponseToPokemon(response, getAttributes){
 	const { data } = response;
 	data.types = flatTypes(data.types);
-	const stats = flatStats(data.stats)
+	const stats = flatStats(data.stats);
+
 	data.img = data.sprites.front_default;
 
-	return getPokemonAttributes({
-		...data, 
-		...stats
-	});
+	return getAttributes({...data, ...stats});
 }
+
+
 
 function getPokemonBy(by){
 	return new Promise((resolve, reject) => {
 		axios.get(`${API_POKEMONS_ENDPOINT}${by}`)
 		.then(response => {
-			resolve(formatResponseToPokemon(response));
+			resolve(formatResponseToPokemon(
+					response,
+					getPokemonAttributes
+			));
 		})
 		.catch(err => {
 			reject(err);
@@ -77,7 +92,11 @@ function getPokemons(limit = API_DEFAULT_LIMIT, offset = 1){
 					return [];
 				}
 				return axios.get(`${API_POKEMONS_ENDPOINT}${id}`)
-				.then(response => pokemons.push(formatResponseToPokemon(response)))
+				.then(response => pokemons.push(
+					formatResponseToPokemon(
+						response,
+						getPokemonLigthAttributes
+					)))
 				.catch(err => undefined) // no pokemonAPI
 			}
 		).then(() => {
