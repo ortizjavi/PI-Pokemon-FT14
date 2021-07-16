@@ -1,17 +1,18 @@
-import * as a from '../actions/actionTypes';
+import * as a from '../types';
 
 const initialState = {
+	loadMorePokemons: true,
 	pokemons: [],
 	types: [],
-	loadMorePokemons: true,
 	filter: false,
-	filteredPokemons: []
+	filteredPokemons: [],
+	searchedPokemon: null
 };
 
 
 const reducer = (state = initialState, action) => {
 	const { type, payload } = action;
-	let list;
+
 	switch (type){
 		case a.LOAD_TYPES:
 			return {...state, types: payload};
@@ -19,32 +20,19 @@ const reducer = (state = initialState, action) => {
 			return {...state, pokemons: state.pokemons.concat(payload), loadMorePokemons: false};
 		case a.LOAD_MORE_POKEMONS:
 			return {...state, loadMorePokemons: payload};
-		case a.FILTER_BY_TYPE_FROM:
-			list = payload.update ? state.pokemons : state.filteredPokemons;
-			return {...state, filteredPokemons: list.filter(poke => {
-				const from = poke.id.length > 10 ? 'DB' : 'API';
-				const types = payload.types;
-				return poke.types
-					.filter(type => types.includes(type.name)).length
-													 === types.length &&
-					from === payload.from;
-			}), filter: true}
-		case a.FILTER_BY_TYPE:
-			list = payload.update ? state.pokemons : state.filteredPokemons;
-			return {...state, filteredPokemons: list.filter(poke => (
-				poke.types
-				.filter(type => payload.types.includes(type.name)).length 
-													=== payload.types.length
-			)), filter: true }
-		case a.FILTER_BY_FROM:
-			list = payload.update ? state.pokemons : state.filteredPokemons;
-			return {...state, filteredPokemons: list.filter(poke => {
-				const from = poke.id.length > 10 ? 'DB' : 'API';
-				return from === payload.from;
-			}), filter: true }
-
+		case a.FILTER_BY:
+			return {...state, filteredPokemons: payload, filter: true};
 		case a.REMOVE_FILTER:
-			return {...state, filter: false, filteredPokemons: []};
+			return {...state, filteredPokemons: [], filter: false};
+		case a.ORDER_BY:
+			return {...state, filteredPokemons: payload, filter: true};
+		case a.ADD_SEARCHED_NAME:
+			if (!payload) // no pokemon
+				return {...state, searchedPokemon: null}
+			if (state.pokemons.filter(poke => poke.id === payload.id).length)
+				return {...state, searchedPokemon: payload}; // pokemon found in list
+			// new pokemon found
+			return {...state, searchedPokemon: payload, pokemons: state.pokemons.concat(payload)}
 		default:
 			return state;
 	}
