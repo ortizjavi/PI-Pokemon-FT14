@@ -87,7 +87,7 @@ function getPokemons(req, res, next){
 function getPokemonsById(req, res, next){
 	const { id } = req.params;
 	let promise;
-	if (id.length > 10){
+	if (id.length < 10){
 		promise = apiPokemons.getPokemonBy(id);
 	} else {
 		promise = Pokemon.findByPk(id, { 
