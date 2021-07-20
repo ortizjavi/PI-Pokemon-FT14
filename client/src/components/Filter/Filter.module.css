@@ -3,6 +3,73 @@
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-end;
-	margin-right: 5vw;
-	margin-top: -5vh;
+	max-height: 35px;
+	width: 35vw;
+	margin: -5vh 5vw 0 auto;
+}
+
+
+.selectTypes {
+	border-radius: 8px;
+	z-index: 5;
+	position: absolute;
+	background-color: white;
+	top: 100%;
+	left: 0;
+	border: 1px solid rgba(0, 0, 0, .32);
+	width: inherit;
+}
+
+.filterContainer {
+	position: relative;
+	display: flex;
+	align-items: center;
+	border: solid 1px white;
+	border-radius: 8px;
+	padding: 5px 10px;
+	width: 120px;
+	justify-content: space-between;
+	background-color: var(--app-default);
+	color: white;
+	margin-left: 20px;
+	font-size: .75;
+	font-weight: 600;
+}
+
+.filterTitle {
+	color: white;
+	font-size: .75rem;
+	font-weight: 600;
+}
+
+.filterIcon {
+	font-size: 30px;
+	cursor: pointer;
+	border-left: 1px solid white;
+	padding-left: 5px;
+}
+
+.typeOption {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 10px;
+	border-bottom: 1px solid rgba(0, 0, 0, .32);
+}
+
+.type {
+	font-size: .85rem;
+	font-weight: 600;
+}
+
+.selector {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	border: 2px solid var(--app-default);
+	cursor: pointer;
+}
+
+select {
+	cursor: pointer;
 }

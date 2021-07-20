@@ -42,11 +42,12 @@ const Pokemon = () => {
 
 	if (!pokemon)
 		return (
-			<div>
+			<div style={{color: 'white', fontWeight: '600'}}>
 				Lo siento, no hemos podido capturar ese pokemon :(
 			</div>
 		)
-	const mainType = pokemon.types[0].name;
+	const mainType = pokemon.types.length ? 
+						pokemon.types[0].name : 'normal';
 	setColorBack(mainType);
 	return (
 		<div className={s.container}>

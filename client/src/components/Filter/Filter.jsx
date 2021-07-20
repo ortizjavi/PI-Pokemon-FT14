@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { filter } from '../../redux/actions';
 import { BsFilter } from 'react-icons/bs';
@@ -13,13 +13,12 @@ const Filter = () => {
 	const [removeCategory, setRemoveCategory] = useState(false);
 	const [allToFrom, setAllToFrom] = useState(true);
 	const [open, setOpen] = useState(false);
-	
-
-	const ref = useRef();
 
 	//redux
 	const dispatch = useDispatch();
-	const types = useSelector(state => state.types)
+	const typesRdx = useSelector(state => state.types)
+	// guardo el array de nombres
+	const types = useMemo(() => typesRdx.map(type => type.name), [typesRdx])
 	const pokemons = useSelector(state => state.pokemons);
 	const filtPokemons = useSelector(state => state.filteredPokemons);
 	
@@ -43,12 +42,11 @@ const Filter = () => {
 	}, [categories])
 
 
-	const handleChangeType = (event) => {
-		const { target: { value }} = event;
-		if (value !== ALL_FILTER && !categories.includes(value)){
-			setCategories(cat => [...cat, value])
-			// reseteo el value del selector
-			ref.current.value = ALL_FILTER;
+	const handleChangeType = (category) => {
+		if (!categories.includes(category)){
+			setCategories(cat => [...cat, category])
+		} else {
+			handleRemove(category);
 		}
 	}
 
@@ -65,23 +63,23 @@ const Filter = () => {
 		value !== ALL_FILTER ? setFrom(value) : setFrom(null);
 	}
 
+	const toggleOpen = () => {
+		setOpen(open => !open);
+	}
+
 	return (
 		<div className={s.container}>
-			<BsFilter/>
-			{/*{ open ? : null }*/}
-			<select ref={ref} onChange={handleChangeType} data-filter="type" className="">
-			<option value={ALL_FILTER} key="0"> Select category </option>
-			{ types.map(type => (
-				<option value={type.name} key={type.id}> {type.name} </option>
-			))}
-			</select>
+		<div className={s.filterContainer}>
+			<span className={s.filterTitle}> Tipos </span>
+			<BsFilter 
+			onClick={toggleOpen} 
+			className={s.filterIcon}
+			style={{ color: categories.length ? 'var(--app-yellow' : 'white'}}/>
+			{ open ? typesMenu(handleChangeType, types, categories) : null}	
+        </div>
 
-			{ categories.length ? categories.map((cat, idx) => (
-				<span key={idx} value={cat} onClick={() => handleRemove(cat)}> {cat} </span>
-			)) : null}
-
-			<select onChange={handleChangeFrom} data-filter="from" className="">
-			<option value={ALL_FILTER} key="0"> API and DB </option>
+			<select onChange={handleChangeFrom} data-filter="from" className={s.filterContainer}>
+			<option value={ALL_FILTER} key="0" className={s.filterTitle}> API & DB </option>
 			{ ['DB', 'API'].map((type, idx) => (
 				<option value={type} key={idx}> {type} </option>
 			))}
@@ -91,8 +89,55 @@ const Filter = () => {
 	)
 }
 
-/*          <select name='types' onChange={onChangeTipo} multiple={true} className={s.selectTypes}>          
-                 { types ? types.map(type=><option value={type.name}>{type.name}</option>) : null}
-             </select>*/
+
+
+function typesMenu(handleChange, types, selected){
+	let select = null;
+	return (
+		<div className={s.selectTypes}>
+			{ types ? types.map((type, idx) => (
+				<div key={idx} className={s.typeOption}>
+					{select = selected.includes(type)}
+					<span 
+					className={s.type}
+					style={{
+						color: select ? `var(--${type}` : 'var(--app-default)'
+					}}> {type.capitalize()} </span>
+					<span 
+					onClick={() => handleChange(type)}
+					className={s.selector}
+					style={{
+						backgroundColor: select ? `var(--${type}` : 'white'
+					}}> 
+					</span>
+				</div>
+			)) : null}
+		</div>
+	)
+}
+/*		<select 
+		name='types' 
+		onChange={handleChangeType} 
+		multiple={true} className={s.selectTypes}
+		values={types}>          
+	         { types ? 
+	         	types.map((type, idx) => <option key={idx} value={type}>{type}</option>) 
+	         : null}
+	     </select>*/
+     
+
+
+
+/*
+<select ref={ref} onChange={handleChangeType} data-filter="type" className="">
+	<option value={ALL_FILTER} key="0"> Select category </option>
+	{ types.map(type => (
+		<option value={type.name} key={type.id}> {type.name} </option>
+	))}
+</select>
+{ categories.length ? categories.map((cat, idx) => (
+	<span key={idx} value={cat} onClick={() => handleRemove(cat)}> {cat} </span>
+)) : null}
+*/
 
 export default Filter;

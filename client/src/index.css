@@ -22,6 +22,7 @@ code {
 
 
 :root {
+	--alpha-app-default: 55, 55, 57;
 	--app-yellow: #FFCB05;
 	--app-default: #373739;
 	--rock: #B69E31;

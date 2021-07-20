@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import s from './Pokemons.module.css';
 
 const getType = (types) => {
+	if (!types.length) return 'normal';
 	return types[0].name;
 }
 

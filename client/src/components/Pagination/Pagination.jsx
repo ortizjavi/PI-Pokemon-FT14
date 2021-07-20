@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { POKEMONS_PER_PAGE } from '../../config';
 import s from './Pagination.module.css';
 import Pokemons from '../Pokemons/Pokemons';
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 
 class Pagination extends Component{
 	constructor(props){
@@ -46,7 +47,9 @@ class Pagination extends Component{
 					<ul>
 					{ 
 						actualPage - 1 ?
-					 	<li className={s.item} onClick={this.handlePreviousPage}> Prev </li>
+					 	<li className={s.item} onClick={this.handlePreviousPage}>
+					 		<BsArrowLeft size={25}/>
+					 	</li>
 					 	 : null
 					}
 					{[...Array(pages)].map((page, idx) => (
@@ -58,7 +61,9 @@ class Pagination extends Component{
 					))}
 					{ 
 						actualPage + 1 <= pages ?
-				 		<li className={s.item} onClick={this.handleNextPage} > Next </li> 
+				 		<li className={s.item} onClick={this.handleNextPage}>
+				 			<BsArrowRight size={25}/>
+				 		</li> 
 					 	: null
 					}
 					</ul>
@@ -68,9 +73,9 @@ class Pagination extends Component{
 		}
 		if (filtered)
 			return (
-				<div> No hay pokemons bajo esos filtros </div>
+				<div className={s.error} > No hay pokemons bajo esos filtros </div>
 			);
-		return <div> Lo siento, no hay pokemons hoy :( </div>;
+		return <div className={s.error} > Lo siento, no hay pokemons hoy :( </div>;
 	}
 }
 

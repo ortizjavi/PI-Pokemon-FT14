@@ -1,6 +1,8 @@
 .container {
-	width: 60vw;
-	margin: auto;
+	width: 35vw;
+	max-width: 35vw;
+	/*margin: 2vh 5vw 0 auto;*/
+	margin: 0 auto;
 }
 
 .container ul{
@@ -11,6 +13,21 @@
 
 .item {
 	list-style: none;
-	padding: 0 0.5rem;
+	padding: 5PX 10px 0;
 	cursor: pointer;
+	border: 1px solid white;
+	border-radius: 8PX;
+	color: white;
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 0 10px;
+}
+
+
+.error {
+	width: 60vw;
+	height: 80vw;
+	color: white;
+	font-size: 1.5rem;
+	margin: 20vh auto 0;
 }
