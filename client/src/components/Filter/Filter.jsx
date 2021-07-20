@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { filter } from '../../redux/actions';
+import { BsFilter } from 'react-icons/bs';
 import s from './Filter.module.css';
 import Order from './Order';
 
@@ -11,6 +12,8 @@ const Filter = () => {
 	const [from, setFrom] = useState(null);
 	const [removeCategory, setRemoveCategory] = useState(false);
 	const [allToFrom, setAllToFrom] = useState(true);
+	const [open, setOpen] = useState(false);
+	
 
 	const ref = useRef();
 
@@ -42,7 +45,7 @@ const Filter = () => {
 
 	const handleChangeType = (event) => {
 		const { target: { value }} = event;
-		if (value !== ALL_FILTER){
+		if (value !== ALL_FILTER && !categories.includes(value)){
 			setCategories(cat => [...cat, value])
 			// reseteo el value del selector
 			ref.current.value = ALL_FILTER;
@@ -50,21 +53,22 @@ const Filter = () => {
 	}
 
 	const handleRemove = (category) => {
-		setRemoveCategory(true);
+		setRemoveCategory(true); // to reset list of filtered
 		setCategories(cat => cat.filter(c => c !== category));
 	}
 
 	const handleChangeFrom = (event) => {
 		const { target: { value }} = event;
 		if (!from){
-			setAllToFrom(true);
+			setAllToFrom(true); // unique case we use filtered list
 		}
 		value !== ALL_FILTER ? setFrom(value) : setFrom(null);
 	}
 
 	return (
-		<div>
-			<Order/>
+		<div className={s.container}>
+			<BsFilter/>
+			{/*{ open ? : null }*/}
 			<select ref={ref} onChange={handleChangeType} data-filter="type" className="">
 			<option value={ALL_FILTER} key="0"> Select category </option>
 			{ types.map(type => (
@@ -77,14 +81,18 @@ const Filter = () => {
 			)) : null}
 
 			<select onChange={handleChangeFrom} data-filter="from" className="">
-			<option value={ALL_FILTER} key="0"> Select from API or DB </option>
+			<option value={ALL_FILTER} key="0"> API and DB </option>
 			{ ['DB', 'API'].map((type, idx) => (
 				<option value={type} key={idx}> {type} </option>
 			))}
 			</select>
+			<Order/>
 		</div>
 	)
 }
 
+/*          <select name='types' onChange={onChangeTipo} multiple={true} className={s.selectTypes}>          
+                 { types ? types.map(type=><option value={type.name}>{type.name}</option>) : null}
+             </select>*/
 
 export default Filter;

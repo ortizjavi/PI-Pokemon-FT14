@@ -7,9 +7,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    background: var(--app-default);
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+:root {
+	--app-yellow: #FFCB05;
+	--app-default: #373739;
+	--rock: #B69E31;
+	--ghost: #70559b;
+	--steel: #b7b9d0;
+	--water: #6493eb;
+	--grass: #74cb48;
+	--psychic: #fb5584;
+	--ice: #9ad6df;
+	--dark: #75574c;
+	--fairy: #e69eac;
+	--normal: #aaa67f;
+	--fighting: #c12239;
+	--flying: #a891ec;
+	--poison: #a43e9e;
+	--bug: #a7b723;
+	--fire: #f57d31;
+	--electric: #f9cf30;
+	--dragon: #7037ff;
+	--ground: #DEC16B;
 }

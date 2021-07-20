@@ -1,0 +1,113 @@
+.container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+
+.heroContainer {
+	position: absolute;
+	margin-top: -10vh;
+	width: 100vw;
+	height: 50vh;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.heroContainer img {
+	/*margin-top: -8vh;*/
+	width: 30%;
+	max-width: 375px;
+	height: auto;
+}
+
+.pokeDetails {
+	position: absolute;
+	width: 90vw;
+	height: 62.5vh;
+	margin-top: 16vh;
+	border: 1px solid white;
+	border-radius: 20px;
+	background-color: white;
+}
+
+.flexDetails {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 25vh;
+}
+
+.pokeTypes {
+	margin-top: -20px;
+	width: 60vw;
+	z-index: 3;	
+}
+
+.pokeType {
+	margin: 0 10px;
+	padding: 5px 20px;
+	font-size: 1.5rem;
+	border-radius: 10px;
+	font-weight: 600;
+	color: white;
+}
+
+.pokeDimensions {
+	margin-top: 2rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.pokeDimension {
+	padding: 0 10px;
+	font-size: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.pokeDimension span {
+	font-size: 0.8rem;
+	flex-basis: 100%;
+}
+
+
+table {
+    text-align:left;
+}
+
+td {
+	padding: 5px 10px; 
+}
+
+.statContainer {
+	margin: 1rem 0 0;
+	font-size: 1.3rem;
+}
+
+.statName {
+	border-right: 1px solid var(--app-default);
+	font-weight: 500;
+}
+
+.statBar{
+	background-color: var(--app-default);
+	opacity: .5;
+	height: 10px;
+	width: 100px;
+	position: relative;
+}
+
+.statBar div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: inherit;
+	opacity: 1;
+	z-index: 3;
+}

@@ -1,6 +1,20 @@
 .container {
 	height: 15vh;
-	background-color: #f70d1a;
-	margin: 0 0 50px;
+	background-color: inherit;
+	color: white;
+	margin: 0 5% 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 5;
 }
 
+.logo {
+	width: 100%;
+    height: auto;
+}
+
+.logoContainer {
+	width: 10vw;
+	margin: auto 0 auto 0;
+}

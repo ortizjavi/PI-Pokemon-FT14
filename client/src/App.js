@@ -33,11 +33,12 @@ function App() {
 		dispatch(getTypes());
 	}, [dispatch])
 
+
   return (
-    <div className="App">
+    <div id="App">
       {location.pathname !== '/landing' ? <Header /> : null}
       <Switch>
-	      {Object.values(routes).map(route => renderRoute(route))}
+	      {Object.values(routes).map(renderRoute)}
       </Switch>
     </div>
   );

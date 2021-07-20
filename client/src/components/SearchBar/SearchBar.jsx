@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchPokemonByName } from '../../redux/actions';
+import { BsSearch } from 'react-icons/bs';
 
 const SearchBar = () => {
 	const [name, setName] = useState('');
@@ -22,15 +23,17 @@ const SearchBar = () => {
 	return (
 		<form onSubmit={handleSubmit} className={s.searchForm}>
 			<input 
-				onChange={handleOnChange} 
+				className={s.searchInput}
+				onChange={handleOnChange}
+				placeholder={`buscar`}
 				type="search" 
 				name="search" 
 				pattern=".*\S.*" 
 				required
 			/>
-			<button className={s.searchBtn} type="submit">
-				<span>Search</span>
-			</button>
+			<span className={`${s.searchIcon}`}>
+				<BsSearch/>
+			</span>
 		</form>
 	);
 }

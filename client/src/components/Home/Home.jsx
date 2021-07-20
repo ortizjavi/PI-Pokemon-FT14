@@ -1,14 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import Pagination from '../Pagination/Pagination';
 import Filter from '../Filter/Filter';
+import s from './Home.module.css';
 
+const setColorBack = () => {
+	document.getElementsByTagName('body')[0]
+		.style.backgroundColor = `var(--app-default)`;
+}
+		
 const Home = () => {
-	const filter = useSelector(state => state.filter);
-
+	
+	useEffect(() => {
+		setColorBack();
+	}, [])
+	
 	return (
-		<div>
+		<div className={s.container}>
 			<Filter />
-			<Pagination filtered={filter}/>
+			<Pagination/>
 		</div>
 	);
 }

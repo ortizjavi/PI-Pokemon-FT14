@@ -7,7 +7,7 @@ let pageNumber = c.POKEMONS_FIRST_PAGE;
 
 export function getPokemonsPage(){
 	return (dispatch) => {
-		return axios.get(`${c.API_POKEMONS}?limit=${c.POKEMONS_PER_PAGE}&page=${pageNumber++}`)
+		axios.get(`${c.API_POKEMONS}?limit=${c.POKEMONS_PER_PAGE}&page=${pageNumber++}`)
 		.then((response) => {
 			const { data } = response;
 			dispatch({type: a.LOAD_POKEMONS, payload: data});
@@ -28,7 +28,7 @@ export function getPokemonsPage(){
 
 export function getTypes(){
 	return (dispatch) => {
-		return axios.get(`${c.API_TYPES}`)
+		axios.get(`${c.API_TYPES}`)
 		.then((response) => {
 			return dispatch({type: a.LOAD_TYPES, payload: response.data})
 		}).catch ((err) => {
@@ -40,7 +40,7 @@ export function getTypes(){
 
 export function searchPokemonByName(name){
 	return (dispatch) => {
-		return axios.get(`${c.API_POKEMONS}?${c.QUERY_NAME_POKEMON}${name}`)
+		axios.get(`${c.API_POKEMONS}?${c.QUERY_NAME_POKEMON}${name}`)
 		.then(response => {
 			return dispatch({
 				type: a.ADD_SEARCHED_NAME,
@@ -57,4 +57,21 @@ export function searchPokemonByName(name){
 
 export function searchPokemonByID(id){
 	return axios.get(`${c.API_POKEMONS}/${id}`)
+}
+
+export function postPokemon(values){
+	return (dispatch) => {
+		axios.post(`${c.API_POKEMONS}`, values)
+		.then(response => {
+			return dispatch({
+				type: a.ADD_SEARCHED_NAME,
+				payload: response.data
+			})
+		}).catch(err => {
+			return dispatch({
+				type: a.ADD_SEARCHED_NAME,
+				payload: null
+			})
+		})
+	}
 }

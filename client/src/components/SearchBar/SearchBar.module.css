@@ -1,9 +1,50 @@
-.searchForm {
-	height: 100%;
-	position: relative;
-	float: right;
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type='search']{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
 }
 
-.searchBtn {
+textarea:focus, input:focus{
+    outline: none;
+}
+.searchForm {
+	height: auto;
+	float: right;
+	margin: auto 0 auto 0;
+}
 
+.searchInput{
+	width: 35vw;
+	height: 30px;
+	background-color: inherit;
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, .95);;
+	padding: 15px;
+	color: white;
+	font-weight: 600;
+	text-align: right;
+	opacity: .75;
+}
+
+.searchInput::placeholder{
+  text-align: right;
+  color: white;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 0.9rem;
+  line-height: 1.15;
+  opacity: .75;
+}
+
+.searchIcon{
+	color: white;
+	position: absolute;
+	margin-left: -100px;
+	margin-top: 7px;
+}
+
+.searchInput:not(:placeholder-shown) ~ span{
+  display:none !important;
+  color:white;
 }

@@ -33,6 +33,8 @@ const reducer = (state = initialState, action) => {
 				return {...state, searchedPokemon: payload}; // pokemon found in list
 			// new pokemon found
 			return {...state, searchedPokemon: payload, pokemons: state.pokemons.concat(payload)}
+		/*case a.CREATED_POKEMON:
+			return {...state, pokemons: state.pokemons.concat(payload)}*/
 		default:
 			return state;
 	}

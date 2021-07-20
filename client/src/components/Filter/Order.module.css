@@ -1,0 +1,37 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	cursor: pointer;
+	border: solid 1px white;
+	border-radius: 8px;
+	padding: 5px 10px;
+	font-size: .75rem;
+	font-weight: 600;
+	margin: 0 0 0 20px;
+}
+
+.container :nth-child(n+1){
+	min-width: 25px;
+}
+
+.nameOrder {
+	width: 80px;
+}
+
+.attOrder {
+	width: 96px;
+	padding-right: 0px;
+	padding-left: 2px;
+}
+
+.letters {
+	display: flex;
+	flex-direction: column;
+}
+
+.attackTitle {
+	padding-left: 0;
+}
+
