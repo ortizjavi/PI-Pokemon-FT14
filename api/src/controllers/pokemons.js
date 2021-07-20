@@ -17,16 +17,13 @@ const include = {
 
 function createPokemon(req, res, next){
 	const attr = req.body;
-
 	let pokemon = Pokemon.create({
 		...attr,
 		id: uuidv4()
 	})
 
-	let { types } = req.body;
-	if (!Array.isArray(types))
-		types = [types]
-	
+	const { types } = req.body;
+
 	const typesQuery = Type.findAll({ where : {
 		name : {
 		 [Op.in] : types
@@ -38,6 +35,7 @@ function createPokemon(req, res, next){
 		pokemon = results[0];
 		return results[0].setTypes(results[1])
 	}).then(() => {
+		if (!pokemon.dataValues.types) pokemon.dataValues.types = [];
 		res.json(pokemon);
 	}).catch(err => {
 		if (err.errors){
