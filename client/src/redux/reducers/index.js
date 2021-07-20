@@ -1,12 +1,13 @@
 import * as a from '../types';
 
 const initialState = {
-	loadMorePokemons: true,
 	pokemons: [],
+	loadMorePokemons: true,
 	types: [],
-	filter: false,
 	filteredPokemons: [],
-	searchedPokemon: null
+	filter: false,
+	searchedPokemon: null,
+	createdPokemon : undefined
 };
 
 
@@ -32,9 +33,13 @@ const reducer = (state = initialState, action) => {
 			if (state.pokemons.filter(poke => poke.id === payload.id).length)
 				return {...state, searchedPokemon: payload}; // pokemon found in list
 			// new pokemon found
-			return {...state, searchedPokemon: payload, pokemons: state.pokemons.concat(payload)}
-		/*case a.CREATED_POKEMON:
-			return {...state, pokemons: state.pokemons.concat(payload)}*/
+			return {...state, searchedPokemon: payload, pokemons: state.pokemons.concat(payload)};
+		case a.CREATED_POKEMON:
+			return {...state, pokemons: [payload].concat(state.pokemons), createdPokemon: payload};
+		case a.ERROR_CREATED_POKEMON:
+			return {...state, createdPokemon: payload};
+		case a.RESET_CREATED_POKEMON:
+			return {...state, createdPokemon: null};
 		default:
 			return state;
 	}

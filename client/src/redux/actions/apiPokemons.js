@@ -64,14 +64,22 @@ export function postPokemon(values){
 		axios.post(`${c.API_POKEMONS}`, values)
 		.then(response => {
 			return dispatch({
-				type: a.ADD_SEARCHED_NAME,
+				type: a.CREATED_POKEMON,
 				payload: response.data
 			})
 		}).catch(err => {
 			return dispatch({
-				type: a.ADD_SEARCHED_NAME,
-				payload: null
+				type: a.ERROR_CREATED_POKEMON,
+				payload: err.response
 			})
 		})
 	}
+}
+
+export function resetCreated(){
+	return (dispatch) => (
+		dispatch({
+			type: a.RESET_CREATED_POKEMON
+		})
+	)
 }
