@@ -8,7 +8,7 @@ const Header = () => {
 	return (
 		<div className={s.container}>
 			<div className={s.logoContainer}>
-			  <Link to='/'>
+			  <Link to='/home'>
 		      <img 
 			      className={s.logo}
 			      src="./pokemon-logo.png" alt="Logo - Pokedex website"

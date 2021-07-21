@@ -2,11 +2,11 @@ import asyncComponent from './modules/AsyncComponent';
 
 const routes = {
 	LANDING: {
-		path: '/landing',
+		path: '/',
 		component: asyncComponent(() => import('../components/Landing/Landing'))
 	},
 	HOME: {
-		path: '/',
+		path: '/home',
 		component: asyncComponent(() => import('../components/Home/Home'))
 	},
 	POKEMONFACTORY: {

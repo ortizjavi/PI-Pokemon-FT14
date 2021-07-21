@@ -1,0 +1,82 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding-top: 15vh;
+	position: relative;
+	overflow-y: hidden;
+}
+
+.pokeball {
+	width: 35vw;
+	margin: 0 auto;
+	z-index: 100;
+}
+
+.pokeball img {
+	width: 100%;
+	height: auto;
+	z-index: 2;
+}
+
+.pokeballTop {
+
+}
+
+
+.pokeballBottom {
+	margin-top: -4.5px;
+}
+
+
+.backgroundCircle {
+	position: absolute;
+	background-color: var(--app-default);
+	border-radius: 50%;
+	width: 35vw;
+	height: 35vw;
+	top: 16vh;
+	left: 32.5vw;
+	border: 2px solid black;
+	transition: all 1s ease-in-out 0s;
+}
+
+.pokemonLogo {
+	margin: 0 auto;
+	width: 35vw;
+	top: 0;
+	left: 32.5vw;
+	position: absolute;
+	pointer-events: none;
+}
+
+.pokemonLogo img {
+	width: 100%;
+	height: auto;
+}
+
+.pokeballCenter {
+	position: absolute;
+	background-color: white;
+	border-radius: 50%;
+	width: 5vw;
+	height: 5vw;
+	top: 47vh;
+	left: 47.5vw;
+	border: 3px solid black;
+}
+
+.pokeballCenter:hover {
+	transition: all 1s ease-in-out 0s;
+    background-color: #7FFDFE;/*#B5EBE6;*/	
+}
+
+/*.pokeball:hover ~ .linkPokeCenter > .pokeballCenter {
+    transition: all 1s ease-in-out 0s;
+    background-color: #B5EBE6;
+}
+
+.rotate {
+	transform: rotate(360deg);
+	transition: all 1s ease-in-out 0s;
+}*/

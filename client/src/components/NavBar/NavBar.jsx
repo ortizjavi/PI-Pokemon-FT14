@@ -7,7 +7,7 @@ const NavBar = () => {
 		<div className={s.container}>
 			<NavLink 
 				exact 
-				to='/' 
+				to='/home' 
 				className={s.nav} 
 				activeClassName={s.selected}> inicio </NavLink>
 			<NavLink 
