@@ -40,7 +40,11 @@ module.exports = (sequelize) => {
     height: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    }
+    },
+    img: {
+      type: DataTypes.STRING(1024),
+      allowNull: true,
+    },
   }, { timestamps: false });
 
   Pokemon.addHook('beforeValidate', (poke, options) => {
