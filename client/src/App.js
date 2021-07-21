@@ -22,7 +22,6 @@ function App() {
 	const dispatch = useDispatch();
 	const loadMorePokemons = useSelector(state => state.loadMorePokemons);
 	const location = useLocation();
-
 	useEffect(() => {
 		if (loadMorePokemons){
 			dispatch(getPokemonsPage());
