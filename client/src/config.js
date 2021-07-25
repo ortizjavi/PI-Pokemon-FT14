@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://pokedex-ortiz.herokuapp.com/';
+export const API_BASE_URL = 'https://pokedex-ortiz.herokuapp.com';
 export const API_POKEMONS = `${API_BASE_URL}/pokemons`;
 export const QUERY_NAME_POKEMON = `name=`;
 export const API_TYPES = `${API_BASE_URL}/types`;
