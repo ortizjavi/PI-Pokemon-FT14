@@ -3,8 +3,8 @@
     "static/js/0.ac734bc2.chunk.js": "/PI-Pokemon-FT14/static/js/0.ac734bc2.chunk.js",
     "static/js/0.ac734bc2.chunk.js.map": "/PI-Pokemon-FT14/static/js/0.ac734bc2.chunk.js.map",
     "main.css": "/PI-Pokemon-FT14/static/css/main.e99018a9.chunk.css",
-    "main.js": "/PI-Pokemon-FT14/static/js/main.daa15a26.chunk.js",
-    "main.js.map": "/PI-Pokemon-FT14/static/js/main.daa15a26.chunk.js.map",
+    "main.js": "/PI-Pokemon-FT14/static/js/main.c1a576ae.chunk.js",
+    "main.js.map": "/PI-Pokemon-FT14/static/js/main.c1a576ae.chunk.js.map",
     "runtime-main.js": "/PI-Pokemon-FT14/static/js/runtime-main.fb721c76.js",
     "runtime-main.js.map": "/PI-Pokemon-FT14/static/js/runtime-main.fb721c76.js.map",
     "static/js/3.3edfceda.chunk.js": "/PI-Pokemon-FT14/static/js/3.3edfceda.chunk.js",
@@ -35,6 +35,6 @@
     "static/js/runtime-main.fb721c76.js",
     "static/js/3.3edfceda.chunk.js",
     "static/css/main.e99018a9.chunk.css",
-    "static/js/main.daa15a26.chunk.js"
+    "static/js/main.c1a576ae.chunk.js"
   ]
 }
