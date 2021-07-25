@@ -17,7 +17,7 @@ const asyncComponent = (importComponent) => {
 		}
 
 		render(){
-			const {component} = this.state;
+			const { component } = this.state;
 			const DynamicComponent = component;
 
 			return DynamicComponent ? <DynamicComponent {...this.props}/> : null;
@@ -29,5 +29,3 @@ const asyncComponent = (importComponent) => {
 
 export default asyncComponent;
 
-
-/**/

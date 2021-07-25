@@ -18,6 +18,7 @@ code {
 
 *, *:before, *:after {
   box-sizing: border-box;
+  transition: .4 ease-in;
 }
 
 

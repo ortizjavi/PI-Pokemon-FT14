@@ -10,13 +10,13 @@ function getPokemonAttributes(obj){
 	const {
 		hp,
 		defense,
-		speed,
 		weight,
-		height
+		height,
+		speed
 	} = obj;
 	return {
-		hp, defense, 
-		speed, weight, height,
+		hp, defense, speed,
+		weight, height,
 		...getPokemonLigthAttributes(obj)
 	}
 }
