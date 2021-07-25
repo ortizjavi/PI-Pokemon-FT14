@@ -28,7 +28,7 @@ const initServer = () => {
 	});
 }
 
-const force = false;
+const force = true;
 conn.sync({ force }).then(() => {
     if (force){
     	initializeDb().then(() => {
