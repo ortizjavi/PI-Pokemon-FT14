@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage" : "https://ortizjavi.github.io/PI-Pokemon-FT14/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
