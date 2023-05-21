@@ -1,0 +1,44 @@
+name: Docker Build Deploy API
+
+on:
+  push:
+    branches: 
+      - 'main'
+    paths:
+      - 'api/**'
+env:
+  DOCKER_USERNAME: '${{secrets.DOCKER_USERNAME}}'
+  DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
+  DOCKER_REPO: '${{secrets.DOCKER_API_REPO}}'
+
+jobs:
+  create-user-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        path: api
+      - name: Docker login
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Build user service docker image
+        run: docker build . --file Dockerfile -t "$DOCKER_USERNAME/$DOCKER_API_REPO:latest"
+      - name: Push user service docker image
+        run: docker push "$DOCKER_USERNAME/$DOCKER_API_REPO:latest"
+
+  deployment:
+    needs: [create-user-image]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v3
+        with:
+          method: service-account
+          k8s-url: ${{secrets.KUBERNETES_URL}}
+          k8s-secret: ${{secrets.KUBERNETES_SECRET}}
+      - uses: actions/checkout@v2
+        path: api
+      - uses: azure/k8s-deploy@v4
+        with:
+          namespace: default
+          manifests: |
+             manifests
