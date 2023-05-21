@@ -6,6 +6,8 @@ on:
       - 'main'
     paths:
       - 'api/**'
+  workflow_dispatch:
+  
 env:
   DOCKER_USERNAME: '${{secrets.DOCKER_USERNAME}}'
   DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
