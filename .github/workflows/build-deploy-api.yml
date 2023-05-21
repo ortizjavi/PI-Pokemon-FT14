@@ -17,8 +17,9 @@ jobs:
   create-user-image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        path: api
+      - uses: actions/checkout@v3
+        with:
+          path: api
       - name: Docker login
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -37,8 +38,9 @@ jobs:
           method: service-account
           k8s-url: ${{secrets.KUBERNETES_URL}}
           k8s-secret: ${{secrets.KUBERNETES_SECRET}}
-      - uses: actions/checkout@v2
-        path: api
+      - uses: actions/checkout@v3
+        with:
+          path: api
       - uses: azure/k8s-deploy@v4
         with:
           namespace: default
