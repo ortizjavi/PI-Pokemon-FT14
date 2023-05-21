@@ -11,7 +11,7 @@ on:
 env:
   DOCKER_USERNAME: '${{secrets.DOCKER_USERNAME}}'
   DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
-  DOCKER_REPO: '${{secrets.DOCKER_API_REPO}}'
+  DOCKER_API_REPO: '${{secrets.DOCKER_API_REPO}}'
 
 jobs:
   create-user-image:
