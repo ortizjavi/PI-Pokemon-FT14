@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokemon-msc-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokemon-msc
+  template:
+    metadata:
+      labels:
+        app: pokemon-msc
+    spec:
+      containers:
+        - name: pokemon-msc
+          image: rigregistrydev.azurecr.io/pokemon-msc
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: pokemon-secrets
