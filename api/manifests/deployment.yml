@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pokemon-msc
-          image: rigregistrydev.azurecr.io/pokemon-msc
+          image: ortizjavi/pokemon-api:latest
           ports:
             - containerPort: 3000
           envFrom:
